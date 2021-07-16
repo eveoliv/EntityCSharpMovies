@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Projeto.Filmes.App.Negocio;
 using Microsoft.EntityFrameworkCore;
-using Projeto.Filmes.App.Negocio;
 
 namespace Projeto.Filmes.App.Dados
 {
@@ -8,6 +7,8 @@ namespace Projeto.Filmes.App.Dados
     {
         public DbSet<Ator> Atores { get; set; }
         public DbSet<Filme> Filmes { get; set; }
+        public DbSet<Idioma> Idiomas { get; set; }
+        public DbSet<FilmeAtor> Elenco { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,7 +19,12 @@ namespace Projeto.Filmes.App.Dados
         {
             modelBuilder.ApplyConfiguration(new AtorConfiguration());
 
-            modelBuilder.ApplyConfiguration(new FilmeConfiguration());            
+            modelBuilder.ApplyConfiguration(new FilmeConfiguration());
+
+            modelBuilder.ApplyConfiguration(new FilmeAtorConfiguration());    
+
+            modelBuilder.ApplyConfiguration(new IdiomaConfiguration());    
+            
         }
     }
 }

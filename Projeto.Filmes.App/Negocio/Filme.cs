@@ -1,4 +1,6 @@
-﻿namespace Projeto.Filmes.App.Negocio
+﻿using System.Collections.Generic;
+
+namespace Projeto.Filmes.App.Negocio
 {
     public class Filme
     {
@@ -7,6 +9,18 @@
         public string Descricao { get; set; }
         public string AnoLancamento { get; set; }
         public short Duracao { get; set; }
-     
+        public IList<FilmeAtor> Atores { get; set; }
+        public Idioma IdiomaFalado { get; set; }
+        public Idioma IdiomaOriginal { get; set; }
+
+        public Filme()
+        {
+            Atores = new List<FilmeAtor>();
+        }
+
+        public override string ToString()
+        {
+            return $"Filme Id {Id} : Titulo {Titulo}";
+        }
     }
 }

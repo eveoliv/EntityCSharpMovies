@@ -1,4 +1,6 @@
-﻿using Projeto.Filmes.App.Dados;
+﻿using System.Linq;
+using Projeto.Filmes.App.Dados;
+using Microsoft.EntityFrameworkCore;
 using Projeto.Filmes.App.Extensions;
 
 namespace Projeto.Filmes.App
@@ -11,11 +13,23 @@ namespace Projeto.Filmes.App
             {
                 context.LogSQLToConsole();
 
-                foreach (var item in context.Filmes)
+                var idiomas = context.Idiomas.Include(f => f.FilmesFalados);
+
+                foreach (var item in idiomas)
                 {
-                    System.Console.WriteLine($"Ator {item.Id} {item.Titulo} {item.AnoLancamento}");
+                    System.Console.WriteLine(item);
                 }
             }
+        }
+
+        private static void Imprime(FilmesContext context, Negocio.FilmeAtor item)
+        {
+            var entidade = context.Entry(item);
+            var filmId = entidade.Property("film_id").CurrentValue;
+            var atorId = entidade.Property("actor_id").CurrentValue;
+            var lasUpd = entidade.Property("last_update").CurrentValue;
+
+            System.Console.WriteLine($"Filme {filmId} Ator {atorId} LastUpdate {lasUpd}");
         }
     }
 }

@@ -16,6 +16,11 @@ namespace Projeto.Filmes.App.Dados
             builder.Property(a => a.AnoLancamento).HasColumnName("release_year").HasColumnType("varchar(4)");
             builder.Property(d => d.Duracao).HasColumnName("length");
             builder.Property<DateTime>("last_update").HasColumnType("datetime").IsRequired();
+            builder.Property<byte>("language_id");
+            builder.Property<byte?>("original_language_id");
+
+            builder.HasOne(i => i.IdiomaFalado).WithMany(f => f.FilmesFalados).HasForeignKey("language_id");
+            builder.HasOne(i => i.IdiomaOriginal).WithMany(f => f.FilmesOriginais).HasForeignKey("original_language_id");
         }
     }
 }
