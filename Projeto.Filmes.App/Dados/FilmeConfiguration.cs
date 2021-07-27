@@ -18,6 +18,8 @@ namespace Projeto.Filmes.App.Dados
             builder.Property<DateTime>("last_update").HasColumnType("datetime").IsRequired();
             builder.Property<byte>("language_id");
             builder.Property<byte?>("original_language_id");
+            builder.Property(c => c.TextoClassificacao).HasColumnName("rating").HasColumnType("varchar(10)");
+            builder.Ignore(c => c.Classificacao);
 
             builder.HasOne(i => i.IdiomaFalado).WithMany(f => f.FilmesFalados).HasForeignKey("language_id");
             builder.HasOne(i => i.IdiomaOriginal).WithMany(f => f.FilmesOriginais).HasForeignKey("original_language_id");

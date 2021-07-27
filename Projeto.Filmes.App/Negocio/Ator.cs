@@ -6,7 +6,7 @@ namespace Projeto.Filmes.App.Negocio
     {     
         public int Id { get; set; }       
         public string PrimeiroNome { get; set; }     
-        public string SegundoNome { get; set; }
+        public string UltimoNome { get; set; }
         public IList<FilmeAtor> Filmografia { get; set; }
 
         public Ator()
@@ -16,7 +16,7 @@ namespace Projeto.Filmes.App.Negocio
 
         public override string ToString()
         {
-            return $"Ator ({Id}): {PrimeiroNome} {SegundoNome}";
+            return $"Ator ({Id}): {PrimeiroNome} {UltimoNome}";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Projeto.Filmes.App.Extensions;
+using System.Collections.Generic;
 
 namespace Projeto.Filmes.App.Negocio
 {
@@ -9,6 +10,12 @@ namespace Projeto.Filmes.App.Negocio
         public string Descricao { get; set; }
         public string AnoLancamento { get; set; }
         public short Duracao { get; set; }
+        public string TextoClassificacao { get; private set; }
+        public ClassificacaoIndicativa Classificacao
+        {
+            get { return TextoClassificacao.ParaValor(); }
+            set { TextoClassificacao = value.ParaString(); }
+        }
         public IList<FilmeAtor> Atores { get; set; }
         public Idioma IdiomaFalado { get; set; }
         public Idioma IdiomaOriginal { get; set; }

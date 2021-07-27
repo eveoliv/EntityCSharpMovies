@@ -19,7 +19,7 @@ namespace Projeto.Filmes.App.Dados
 
             builder.HasOne(f => f.Filme).WithMany(a => a.Atores).HasForeignKey("film_id");
 
-            builder.HasOne(f => f.Ator).WithMany(f => f.Filmografia).HasForeignKey("actor_id");
+            builder.HasOne(f => f.Ator).WithMany(f => f.Filmografia).HasForeignKey("actor_id");            
         }
     }
 }

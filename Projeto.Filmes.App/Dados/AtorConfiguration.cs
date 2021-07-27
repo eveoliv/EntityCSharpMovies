@@ -11,9 +11,12 @@ namespace Projeto.Filmes.App.Dados
         {
             builder.ToTable("actor");
             builder.Property(i => i.Id).HasColumnName("actor_id");
-            builder.Property(s => s.SegundoNome).HasColumnName("last_name").HasColumnType("varchar(45)").IsRequired();
             builder.Property(p => p.PrimeiroNome).HasColumnName("first_name").HasColumnType("varchar(45)").IsRequired();
+            builder.Property(s => s.UltimoNome).HasColumnName("last_name").HasColumnType("varchar(45)").IsRequired();
             builder.Property<DateTime>("last_update").HasColumnType("datetime").HasDefaultValueSql("getdate()");
+            builder.HasIndex(a => a.UltimoNome);
+
+            builder.HasAlternateKey(a => new { a.PrimeiroNome, a.UltimoNome });
 
         }
     }
